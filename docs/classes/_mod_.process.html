@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Struct | DenoPwn</title>
+	<title>Process | DenoPwn</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
 					<a href="../modules/_mod_.html">&quot;mod&quot;</a>
 				</li>
 				<li>
-					<a href="_mod_.struct.html">Struct</a>
+					<a href="_mod_.process.html">Process</a>
 				</li>
 			</ul>
 		</div>
@@ -70,27 +70,21 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul>
 					<ul class="before-current">
-						<li class=" tsd-kind-class tsd-parent-kind-module">
-							<a href="_mod_.process.html" class="tsd-kind-icon">Process</a>
-						</li>
 					</ul>
 					<ul class="current">
-						<li class="current tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
-							<a href="_mod_.struct.html" class="tsd-kind-icon">Struct</a>
+						<li class="current tsd-kind-class tsd-parent-kind-module">
+							<a href="_mod_.process.html" class="tsd-kind-icon">Process</a>
 							<ul>
 								<li class=" tsd-kind-constructor tsd-parent-kind-class">
-									<a href="_mod_.struct.html#constructor" class="tsd-kind-icon">constructor</a>
-								</li>
-								<li class=" tsd-kind-method tsd-parent-kind-class">
-									<a href="_mod_.struct.html#pack" class="tsd-kind-icon">pack</a>
-								</li>
-								<li class=" tsd-kind-method tsd-parent-kind-class">
-									<a href="_mod_.struct.html#unpack" class="tsd-kind-icon">unpack</a>
+									<a href="_mod_.process.html#constructor" class="tsd-kind-icon">constructor</a>
 								</li>
 							</ul>
 						</li>
 					</ul>
 					<ul class="after-current">
+						<li class=" tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+							<a href="_mod_.struct.html" class="tsd-kind-icon">Struct</a>
+						</li>
 						<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 							<a href="../modules/_mod_.html#int" class="tsd-kind-icon">Int</a>
 						</li>
@@ -206,22 +200,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment">
 					<div class="lead">
-						<p>A convenience class for unpacking and packing. {@link struct]</p>
+						<p>Implements a &quot;Process&quot; - a reader and a writer, along with some utility functions.</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-					<span class="name">T</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">StructDef</span>                    </li>
-				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Struct</span>
+						<span class="target">Process</span>
 					</li>
 				</ul>
 			</section>
@@ -233,24 +220,7 @@
 							<div class="tsd-navigation secondary">
 								<ul>
 									<li class="tsd-kind-constructor tsd-parent-kind-class">
-										<a href="_mod_.struct.html#constructor" class="tsd-kind-icon">constructor</a>
-									</li>
-								</ul>
-							</div>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<div class="tsd-navigation secondary">
-								<ul>
-									<li class="tsd-kind-method tsd-parent-kind-class">
-										<a href="_mod_.struct.html#pack" class="tsd-kind-icon">pack</a>
-									</li>
-								</ul>
-							</div>
-							<div class="tsd-navigation secondary">
-								<ul>
-									<li class="tsd-kind-method tsd-parent-kind-class">
-										<a href="_mod_.struct.html#unpack" class="tsd-kind-icon">unpack</a>
+										<a href="_mod_.process.html#constructor" class="tsd-kind-icon">constructor</a>
 									</li>
 								</ul>
 							</div>
@@ -264,89 +234,39 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Struct<span class="tsd-signature-symbol">(</span>descr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_mod_.struct.html" class="tsd-signature-type">Struct</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Process<span class="tsd-signature-symbol">(</span>rd<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Deno.Reader</span>, wr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Deno.Writer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_mod_.process.html" class="tsd-signature-type">Process</a></li>
 					</ul>
 					<div class="tsd-comment">
+						<div class="lead">
+							<p>Create a new process.</p>
+						</div>
 					</div>
 					<h4 class="tsd-parameters-title">Parameters</h4>
 					<ul class="tsd-parameters">
 						<li>
-							<span class="name">descr</span>: <span class="tsd-signature-type">T</span>
+							<span class="name">rd</span>: <span class="tsd-signature-type">Deno.Reader</span>
 							<div class="tsd-comment">
 								<div class="lead">
-									<p>The descriptor.</p>
+									<p>The standard output and error of the process</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<span class="name">wr</span>: <span class="tsd-signature-type">Deno.Writer</span>
+							<div class="tsd-comment">
+								<div class="lead">
+									<p>The standard input of the process</p>
 								</div>
 							</div>
 						</li>
 					</ul>
-					<h4 class="tsd-returns-title">Returns <a href="_mod_.struct.html" class="tsd-signature-type">Struct</a></h4>
+					<h4 class="tsd-returns-title">Returns <a href="_mod_.process.html" class="tsd-signature-type">Process</a></h4>
 					</ul>
 					<div class="tsd-comment">
 					</div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pitust/denopwn/blob/59d73e3/mod.ts#L248">mod.ts:248</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-descriptions">
-					<a name="pack" class="tsd-anchor"></a>
-					<h3>pack</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">pack<span class="tsd-signature-symbol">(</span>o<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">UnpackMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
-					</ul>
-					<div class="tsd-comment">
-						<div class="lead">
-							<p>Repacks the object into an Uint8Array. Undoes <a href="_mod_.struct.html#unpack">Struct.unpack</a></p>
-						</div>
-					</div>
-					<h4 class="tsd-parameters-title">Parameters</h4>
-					<ul class="tsd-parameters">
-						<li>
-							<span class="name">o</span>: <span class="tsd-signature-type">UnpackMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
-							<div class="tsd-comment">
-								<p>The object to be repacked</p>
-							</div>
-						</li>
-					</ul>
-					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span>    </h4>
-					<p>The result of packing</p>
-					</ul>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pitust/denopwn/blob/59d73e3/mod.ts#L271">mod.ts:271</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-descriptions">
-					<a name="unpack" class="tsd-anchor"></a>
-					<h3>unpack</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">unpack<span class="tsd-signature-symbol">(</span>bin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DataArray</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">UnpackMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<div class="tsd-comment">
-						<div class="lead">
-							<p>Unpack DataArray into an object. Undoes <a href="_mod_.struct.html#pack">Struct.pack</a></p>
-						</div>
-					</div>
-					<h4 class="tsd-parameters-title">Parameters</h4>
-					<ul class="tsd-parameters">
-						<li>
-							<span class="name">bin</span>: <span class="tsd-signature-type">DataArray</span>
-							<div class="tsd-comment">
-								<p>The DataArray to be unpacked</p>
-							</div>
-						</li>
-					</ul>
-					<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">UnpackMap</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>    </h4>
-					<p>Unpacked version of <code>bin</code></p>
-					</ul>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pitust/denopwn/blob/59d73e3/mod.ts#L261">mod.ts:261</a></li>
+							<li>Defined in <a href="https://github.com/pitust/denopwn/blob/59d73e3/mod.ts#L518">mod.ts:518</a></li>
 						</ul>
 					</aside>
 				</section>

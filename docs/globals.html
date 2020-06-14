@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>DenoPwn</title>
-	<meta name="description" content="Documentation for DenoPwn">
+	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,62 +55,209 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1>DenoPwn</h1>
 		</div>
 	</div>
 </header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
+<div class="container">
+	<div class="row container container-main">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul>
+					<li>📑 Index</li>
+					<li><br></li>
+					<li class="current ">
+						<a href="globals.html">Globals</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="modules/_mod_.html">&quot;mod&quot;</a>
+				</li>                </ul>
+			</nav>
+		</div>
+		<div class="col-9 col-content">
 			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
 							<h3>Modules</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-module"><a href="modules/_mod_.html" class="tsd-kind-icon">&quot;mod&quot;</a></li>
-							</ul>
+							<div class="tsd-navigation secondary">
+								<ul>
+									<li class="tsd-kind-module">
+										<a href="modules/_mod_.html" class="tsd-kind-icon">&quot;mod&quot;</a>
+										<ul>
+											<li class="tsd-kind-class tsd-parent-kind-module">
+												<a href="classes/_mod_.process.html" class="tsd-kind-icon">Process</a>
+												<ul>
+													<li class="tsd-kind-constructor tsd-parent-kind-class">
+														<a href="classes/_mod_.process.html#constructor" class="tsd-kind-icon">constructor</a>
+													</li>
+												</ul>
+											</li>
+											<li class="tsd-kind-class tsd-parent-kind-module tsd-has-type-parameter">
+												<a href="classes/_mod_.struct.html" class="tsd-kind-icon">Struct</a>
+												<ul>
+													<li class="tsd-kind-constructor tsd-parent-kind-class">
+														<a href="classes/_mod_.struct.html#constructor" class="tsd-kind-icon">constructor</a>
+													</li>
+													<li class="tsd-kind-method tsd-parent-kind-class">
+														<a href="classes/_mod_.struct.html#pack" class="tsd-kind-icon">pack</a>
+													</li>
+													<li class="tsd-kind-method tsd-parent-kind-class">
+														<a href="classes/_mod_.struct.html#unpack" class="tsd-kind-icon">unpack</a>
+													</li>
+												</ul>
+											</li>
+											<li class="tsd-kind-type-alias tsd-parent-kind-module">
+												<a href="modules/_mod_.html#int" class="tsd-kind-icon">Int</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#buf" class="tsd-kind-icon">buf</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#bufbs" class="tsd-kind-icon">bufbs</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#cat" class="tsd-kind-icon">cat</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#copyin" class="tsd-kind-icon">copy<wbr>In</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#dv" class="tsd-kind-icon">dv</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#dvop" class="tsd-kind-icon">dvop</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#error" class="tsd-kind-icon">error</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#fatal" class="tsd-kind-icon">fatal</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#flip" class="tsd-kind-icon">flip</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#fmt" class="tsd-kind-icon">fmt</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#getmain" class="tsd-kind-icon">get<wbr>Main</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#hex" class="tsd-kind-icon">hex</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#info" class="tsd-kind-icon">info</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#int-1" class="tsd-kind-icon">int</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#load" class="tsd-kind-icon">load</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#long" class="tsd-kind-icon">long</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#off" class="tsd-kind-icon">off</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#oneuserframe" class="tsd-kind-icon">one<wbr>User<wbr>Frame</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+												<a href="modules/_mod_.html#pack" class="tsd-kind-icon">pack</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#path" class="tsd-kind-icon">path</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#prompt" class="tsd-kind-icon">prompt</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#roundup" class="tsd-kind-icon">round<wbr>Up</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#searchinsearchable" class="tsd-kind-icon">search<wbr>InSearchable</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#searchable" class="tsd-kind-icon">searchable</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#stacktrace" class="tsd-kind-icon">stacktrace</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#str" class="tsd-kind-icon">str</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+												<a href="modules/_mod_.html#struct-1" class="tsd-kind-icon">struct</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#unhex" class="tsd-kind-icon">unhex</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+												<a href="modules/_mod_.html#unpack" class="tsd-kind-icon">unpack</a>
+											</li>
+											<li class="tsd-kind-function tsd-parent-kind-module">
+												<a href="modules/_mod_.html#warn" class="tsd-kind-icon">warn</a>
+											</li>
+											<li class="tsd-kind-object-literal tsd-parent-kind-module">
+												<a href="modules/_mod_.html#ps" class="tsd-kind-icon">ps</a>
+												<ul>
+													<li class="tsd-kind-function tsd-parent-kind-object-literal">
+														<a href="modules/_mod_.html#ps.local" class="tsd-kind-icon">local</a>
+													</li>
+													<li class="tsd-kind-function tsd-parent-kind-object-literal">
+														<a href="modules/_mod_.html#ps.remote" class="tsd-kind-icon">remote</a>
+													</li>
+												</ul>
+											</li>
+											<li class="tsd-kind-object-literal tsd-parent-kind-module">
+												<a href="modules/_mod_.html#radare2" class="tsd-kind-icon">radare2</a>
+												<ul>
+													<li class="tsd-kind-function tsd-parent-kind-object-literal">
+														<a href="modules/_mod_.html#radare2.strings" class="tsd-kind-icon">strings</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
 						</section>
 					</div>
 				</section>
 			</section>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals current ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_mod_.html">&quot;mod&quot;</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
-			</nav>
+			<footer class="with-border-bottom">
+				<div class="tsd-legend-group">
+					<ul class="tsd-legend">
+						<li class="tsd-is-inherited"><span class="tsd-kind-icon">Inherited</span></li>
+						<li class="tsd-is-protected"><span class="tsd-kind-icon">Protected</span></li>
+						<li class="tsd-is-private"><span class="tsd-kind-icon">Private</span></li>
+						<li class="tsd-is-static"><span class="tsd-kind-icon">Static</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+						<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object</span></li>
+						<li class="tsd-kind-property"><span class="tsd-kind-icon">Property</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+						<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+						<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type</span></li>
+						<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enum</span></li>
+						<li class="tsd-kind-constructor"><span class="tsd-kind-icon">Constructor</span></li>
+						<li class="tsd-kind-accessor"><span class="tsd-kind-icon">Getter/Setter</span></li>
+					</ul>
+				</div>
+			</footer>
+			<div>Made with ❤️ by <a href="https://github.com/pirix-gh/eledoc" target="_blank">pirix-gh</a>. Documentation generated by <a href="http://typedoc.org/" target="_blank">TypeDoc.</a></div>
 		</div>
 	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>

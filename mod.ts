@@ -56,7 +56,7 @@ export function fmt(format: string, ...args: any[]): string {
  * @param args Arguments to the format.
  */
 export function info(format: string, ...args: any[]) {
-    console.log('%s', `${blue(bold('[+] '))}${fmt(format, args)}`);
+    console.log('%s', `${blue(bold('[+] '))}${fmt(format, ...args)}`);
 }
 /**
  * Shows a warning on the standard error.
@@ -64,7 +64,7 @@ export function info(format: string, ...args: any[]) {
  * @param args Arguments to the format.
  */
 export function warn(s: string, ...args: any[]) {
-    console.warn('%s', `${yellow(bold('[!] '))}${fmt(s, args)}`);
+    console.warn('%s', `${yellow(bold('[!] '))}${fmt(s, ...args)}`);
 }
 
 /**
@@ -73,7 +73,7 @@ export function warn(s: string, ...args: any[]) {
  * @param args Arguments to the format.
  */
 export function error(s: string, ...args: any[]) {
-    console.error('%s', `${red(bold('[!] '))}${fmt(s, args)}`);
+    console.error('%s', `${red(bold('[!] '))}${fmt(s, ...args)}`);
     console.error('%s', `    at ${oneUserFrame()}`);
 }
 
@@ -83,7 +83,7 @@ export function error(s: string, ...args: any[]) {
  * @param args Arguments to the format.
  */
 export function fatal(s: string, ...args: any[]): never {
-    console.error('%s', `${red(bold('[!] '))}${fmt(s, args)}`);
+    console.error('%s', `${red(bold('[!] '))}${fmt(s, ...args)}`);
     console.error('%s', `    at ${oneUserFrame()}`);
     Deno.exit(1);
 }
@@ -334,7 +334,7 @@ export function getMain(): string {
  * @param main (optional) set the main entrypoint.
  */
 export function struct<T extends StructDef>(structId: string, main?: string): Struct<T> {
-    main = main || getMain();
+    main = import.meta.url;
     let mainSplit = main.split('/');
     mainSplit[mainSplit.length - 1] = 'struct.ts';
     let mainRejoined = mainSplit.join('/');
@@ -408,6 +408,14 @@ export function str(f: DataArray): string {
     return td.decode(buf(f));
 }
 /**
+ * Convert a byte string to Uint8Array. THIS DOES NOT DECODE UTF8!!!
+ * @param f The DataArray.
+ * @returns The result of the conversion
+ */
+export function bufbs(f: string): Uint8Array {
+    return new Uint8Array([...f].map(e => e.charCodeAt(0)));
+}
+/**
  * Convert a DataArray to a DataView
  * @param f The DataArray.
  * @returns The result of the conversion
@@ -426,11 +434,19 @@ export function hex(f: DataArray): string {
 }
 /**
  * Convert a hex string to an Uint8Array
- * @param f 
+ * @param s The hex string
  * @returns The result of the conversion
  */
 export function unhex(s: string): Uint8Array {
-    return new Uint8Array(s.split(/(..)/).filter(e => e).map(e => parseInt(e)));
+    return new Uint8Array(s.split(/(..)/).filter(e => e).map(e => parseInt(e, 16)));
+}
+/**
+ * Flips a DataArray
+ * @param arr The data array to be flipped
+ * @returns The result of the conversion
+ */
+export function flip(arr: DataArray): Uint8Array {
+    return buf(arr).map(e => e).reverse();
 }
 /**
  * Convert an {@link Int} to number
@@ -449,11 +465,62 @@ export function long(s: number | bigint): bigint {
     return BigInt(s.toString());
 }
 /**
+ * Generate searchable string
+ * @param len The length of a searchable
+ */
+export function searchable(len: number): string {
+    let o = '';
+    for (let i = 0; i < len; i += 5) {
+        o += 'A' + i.toString(36).padStart(3, '0');
+    }
+
+    return o.slice(0, len);
+}
+/**
+ * Find an index in a searchable
+ * @param x 
+ */
+export function searchInSearchable(x: string): number {
+    let [left, right] = x.split('A');
+    let rcn = parseInt(right + left, 36) + 4 - left.length;;
+    return searchable(rcn + 12).indexOf(x);
+}
+/**
+ * Copy in data from `ins` to `b`
+ * @param b Where to copy in
+ * @param ins What to copy
+ * @param offset The offset in b to copy
+ */
+export function copyIn(b: Uint8Array, ins: DataArray, offset: number): void {
+    let x = buf(ins);
+    for (let i = 0;i < b.length;i++) b[i + offset] = x[i];
+}
+/**
+ * Prompt the user for data
+ * @param str The prompt (optional, defaults to '> ', is made bold-red)
+ */
+export async function prompt(str: string = '> '): Promise<string> {
+    Deno.stdout.write(te.encode(bold(red(str))));
+    let o = '';
+    while (true) {
+        let mybuf = new Uint8Array(1);
+        let r = await Deno.stdin.read(mybuf);
+        if (r == null) return o;
+        o += td.decode(mybuf);
+        if (o.includes('\n')) return o.trim();
+    }
+}
+/**
  * Implements a "Process" - a reader and a writer, along with some utility functions.
  */
 export class Process {
     #rd: Deno.Reader;
     #wr: Deno.Writer;
+    /**
+     * Create a new process.
+     * @param rd The standard output and error of the process
+     * @param wr The standard input of the process
+     */
     constructor(rd: Deno.Reader, wr: Deno.Writer) {
         this.#rd = rd;
         this.#wr = wr;
@@ -468,7 +535,9 @@ export class Process {
         let rdBuffer: Uint8Array[] = [];
         while (true) {
             let buf = new Uint8Array(1);
-            if ((await this.#rd.read(buf)) === 1) rdBuffer.push(buf);
+            let d = (await this.#rd.read(buf));
+            if (d === 1) rdBuffer.push(buf);
+            if (d === null) return cat(rdBuffer);
             if (pred(cat(rdBuffer))) {
                 return cat(rdBuffer);
             }
@@ -476,6 +545,16 @@ export class Process {
     }
     async write(d: DataArray) {
         await this.#wr.write(buf(d));
+    }
+    async interact() {
+        let rd = this.#rd;
+        let wr = this.#wr;
+        this.#rd = null as unknown as Deno.Reader;
+        this.#wr = null as unknown as Deno.Writer;
+        await Promise.all([
+            Deno.copy(rd, Deno.stdout),
+            Deno.copy(Deno.stdin, wr)
+        ]);
     }
 }
 interface RunOptionsNoCmd {
@@ -524,8 +603,14 @@ export const ps = {
  * Convenience functions for radare2/rabin2
  */
 export const radare2 = {
+    /**
+     * Asks rabin2 about strings.
+     * @param mode How should we get the strings?
+     * @param binpath Path to the binary with the strings
+     * @returns Strings
+     */
     async strings(mode: 'data' | 'raw' | 'even-rawer', binpath: string): Promise<string[]> {
         let mf = mode == 'data' ? '-z' : mode == 'raw' ? '-zz' : '-zzz';
-        return str(await Deno.run({cmd: ['rabin2', '-qq', mf, binpath]}).output()).split('\n').filter(e => e);
+        return str(await (Deno.run({ cmd: ['rabin2', '-qq', mf, binpath], stderr: 'null', stdout: 'piped' })).output()).split('\n').filter(e => e);
     }
 }

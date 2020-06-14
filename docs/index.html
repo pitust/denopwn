@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>DenoPwn</title>
-	<meta name="description" content="Documentation for DenoPwn">
+	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -40,8 +41,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,51 +55,98 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1>DenoPwn</h1>
 		</div>
 	</div>
 </header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_mod_.html">&quot;mod&quot;</a>
-					</li>
-				</ul>
-			</nav>
+<div class="container">
+	<div class="row container container-main">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
+				<ul>
+					<li>📑 Index</li>
+					<li><br></li>
+					<li class=" ">
+						<a href="globals.html">Globals</a>
+						</li>                        <li class=" tsd-kind-module">
+						<a href="modules/_mod_.html">&quot;mod&quot;</a>
+				</li>                </ul>
 			</nav>
 		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-			</ul>
+		<div class="col-9 col-content">
+			<div class="tsd-panel">
+				<a href="#denopwn" id="denopwn" style="color: inherit; text-decoration: none;">
+					<h1>DenoPwn</h1>
+				</a>
+				<p>A library for pwning things in deno.</p>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
+				</a>
+				<a href="#dependencies" id="dependencies" style="color: inherit; text-decoration: none;">
+					<h3>Dependencies</h3>
+				</a>
+				<ul>
+					<li>Deno</li>
+					<li>radare2</li>
+					<li>That&#39;s it!
+						<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+							<h3>Example</h3>
+						</a>
+						This works only on x86-64 linux.
+						Grab license_1 from <a href="https://github.com/LiveOverflow/liveoverflow_youtube/blob/master/0x05_simple_crackme_intro_assembler">here</a>. It is a simple license check. Make sure you <code>chmod +x</code> it before proceeding.
+						Now, how to pwn it?<pre><code class="language-sh">deno run https://deno-website2-ieysbo3h2.vercel.app/x/pwn/strings_as_key.ts --target path/to/license1</code></pre>
+						You should see see it get compiled and print some log output:<pre><code>[+] <span class="hljs-symbol">Grabbing</span> strings...
+[+] <span class="hljs-symbol">Checking</span> [<span class="hljs-number">0</span>/<span class="hljs-number">6</span>]
+[+] <span class="hljs-symbol">Checking</span> [<span class="hljs-number">1</span>/<span class="hljs-number">6</span>]
+[+] <span class="hljs-symbol">Found</span> key: <span class="hljs-symbol">AAAA</span>-<span class="hljs-symbol">Z10N</span><span class="hljs-number">-42</span>-<span class="hljs-symbol">OK</span></code></pre>Of course, there will be pretty colors if your terminal supports them<pre><code>$ ./license_1 AAAA-Z10N<span class="hljs-number">-42</span>-OK
+Checking License: AAAA-Z10N<span class="hljs-number">-42</span>-OK
+Access Granted!</code></pre>
+						<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+							<h2>Docs</h2>
+						</a>
+						<a href="https://pitust.github.io/denopwn/">link</a>
+						<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+							<h2>License</h2>
+						</a>
+						ISC License, see LICENSE.md
+						<a href="#generating-docs" id="generating-docs" style="color: inherit; text-decoration: none;">
+							<h2>Generating docs</h2>
+						</a>
+					<pre><code>typedoc --excludeNotExported --excludeNotDocumented --theme ~<span class="hljs-regexp">/.nvm/versions</span><span class="hljs-regexp">/node/v</span>13.<span class="hljs-number">8.0</span>/<span class="hljs-class"><span class="hljs-keyword">lib</span>/<span class="hljs-title">node_modules</span>/<span class="hljs-title">eledoc</span>/<span class="hljs-title">bin</span>/<span class="hljs-title">default</span>/ --<span class="hljs-title">name</span> <span class="hljs-title">DenoPwn</span> ./<span class="hljs-title">mod</span>.<span class="hljs-title">ts</span> --<span class="hljs-title">out</span> <span class="hljs-title">docs</span>/  --<span class="hljs-title">ignoreCompilerErrors</span></span></code></pre></li>
+				</ul>
+			</div>
+			<footer class="with-border-bottom">
+				<div class="tsd-legend-group">
+					<ul class="tsd-legend">
+						<li class="tsd-is-inherited"><span class="tsd-kind-icon">Inherited</span></li>
+						<li class="tsd-is-protected"><span class="tsd-kind-icon">Protected</span></li>
+						<li class="tsd-is-private"><span class="tsd-kind-icon">Private</span></li>
+						<li class="tsd-is-static"><span class="tsd-kind-icon">Static</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+						<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object</span></li>
+						<li class="tsd-kind-property"><span class="tsd-kind-icon">Property</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+						<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+						<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type</span></li>
+						<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+						<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+					</ul>
+					<ul class="tsd-legend">
+						<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enum</span></li>
+						<li class="tsd-kind-constructor"><span class="tsd-kind-icon">Constructor</span></li>
+						<li class="tsd-kind-accessor"><span class="tsd-kind-icon">Getter/Setter</span></li>
+					</ul>
+				</div>
+			</footer>
+			<div>Made with ❤️ by <a href="https://github.com/pirix-gh/eledoc" target="_blank">pirix-gh</a>. Documentation generated by <a href="http://typedoc.org/" target="_blank">TypeDoc.</a></div>
 		</div>
 	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
