@@ -10,7 +10,7 @@ This works only on x86-64 linux.
 Grab license_1 from [here](https://github.com/LiveOverflow/liveoverflow_youtube/blob/master/0x05_simple_crackme_intro_assembler). It is a simple license check. Make sure you `chmod +x` it before proceeding.
 Now, how to pwn it?
 ```sh
-deno run https://deno-website2-ieysbo3h2.vercel.app/x/pwn/strings_as_key.ts --target path/to/license1
+deno run https://deno.land/x/pwn/strings_as_key.ts --target path/to/license1
 ```
 You should see see it get compiled and print some log output:
 ```
